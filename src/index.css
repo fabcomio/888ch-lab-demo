@@ -238,6 +238,15 @@ html[data-theme="light"] body {
   color: #475569 !important;
 }
 
+.theme-shell.light-mode .proof-strip {
+  background-color: #e6ebf1 !important;
+  border-color: rgba(15, 23, 42, 0.14) !important;
+}
+
+.theme-shell.light-mode .proof-strip .bg-white\/\[0\.04\] {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
 button,
 a {
   -webkit-tap-highlight-color: transparent;

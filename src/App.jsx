@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import {
   Activity,
   ArrowRight,
+  Award,
   BadgeCheck,
   Car,
   CheckCircle2,
@@ -16,6 +17,7 @@ import {
   Moon,
   Phone,
   PlayCircle,
+  Route,
   SearchCheck,
   Send,
   ShieldCheck,
@@ -33,6 +35,15 @@ const phoneNumber = '+41 76 606 38 38'
 const phoneHref = 'tel:+41766063838'
 const whatsappHref =
   'https://wa.me/41766063838?text=Guten%20Tag%20888CH-LAB%2C%20ich%20moechte%20ein%20Fahrzeugproblem%20abklaeren%20lassen.'
+const routeHref =
+  'https://www.google.com/maps/search/?api=1&query=Suhrerstrasse%2024%2C%205036%20Oberentfelden'
+
+const proofStats = [
+  { value: '1998', label: 'Elektronik-Erfahrung' },
+  { value: '24h', label: 'Antwortziel per WhatsApp' },
+  { value: 'Aarau', label: 'Region' },
+  { value: 'MFK', label: 'kontrollbereit' },
+]
 
 const serviceCards = [
   {
@@ -193,6 +204,8 @@ const issueOptions = [
     title: 'Elektronikdiagnose mit sauberer Priorisierung',
     text: 'Wir lesen relevante Systeme aus, prüfen Zusammenhänge und erklären, ob Weiterfahren sinnvoll ist oder eine Reparatur zeitnah geplant werden sollte.',
     next: 'Foto der Warnlampe und Fahrzeugdaten per WhatsApp senden.',
+    whatsapp:
+      'https://wa.me/41766063838?text=Guten%20Tag%20888CH-LAB%2C%20bei%20meinem%20Fahrzeug%20leuchtet%20eine%20Warnlampe.%20Ich%20sende%20Foto%20und%20Fahrzeugdaten.',
     icon: Activity,
   },
   {
@@ -201,6 +214,8 @@ const issueOptions = [
     title: 'Kontrollrelevante Punkte vorab klären',
     text: 'Licht, Bremsen, Fahrwerk, Reifen, Elektronik und sichtbare Mängel werden gezielt beurteilt, damit Sie nicht unvorbereitet zur Kontrolle fahren.',
     next: 'MFK-Termin oder ungefähres Prüfdatum mitsenden.',
+    whatsapp:
+      'https://wa.me/41766063838?text=Guten%20Tag%20888CH-LAB%2C%20ich%20moechte%20mein%20Fahrzeug%20fuer%20die%20MFK%20vorbereiten%20lassen.',
     icon: ClipboardCheck,
   },
   {
@@ -209,6 +224,8 @@ const issueOptions = [
     title: 'Komfortsysteme prüfen, bevor es mühsam wird',
     text: 'Wir prüfen Kühlleistung, Filterzustand, elektrische Funktionen und auffällige Geräusche oder Gerüche mit klarer Empfehlung.',
     next: 'Symptom kurz beschreiben und wenn möglich ein Video anhängen.',
+    whatsapp:
+      'https://wa.me/41766063838?text=Guten%20Tag%20888CH-LAB%2C%20ich%20habe%20ein%20Problem%20mit%20Klima%20oder%20Komfortsystemen.',
     icon: Snowflake,
   },
   {
@@ -217,7 +234,32 @@ const issueOptions = [
     title: 'Performance-Probleme strukturiert eingrenzen',
     text: 'Wir betrachten Fehlerspeicher, Fahrverhalten und relevante Sensorik, damit nicht auf Verdacht Teile ersetzt werden.',
     next: 'Marke, Modell, Motorisierung und Auftreten des Problems senden.',
+    whatsapp:
+      'https://wa.me/41766063838?text=Guten%20Tag%20888CH-LAB%2C%20mein%20Fahrzeug%20hat%20Leistungsverlust.%20Ich%20sende%20Marke%2C%20Modell%20und%20Symptom.',
     icon: Gauge,
+  },
+]
+
+const faqs = [
+  {
+    question: 'Kann ich zuerst nur ein Foto oder Video senden?',
+    answer:
+      'Ja. Ein Foto der Warnlampe, ein kurzes Video oder die Fahrzeugdaten reichen oft, um den passenden Termin und die Dringlichkeit besser einzuschätzen.',
+  },
+  {
+    question: 'Werden Teile einfach auf Verdacht ersetzt?',
+    answer:
+      'Nein. Der Fokus liegt auf Diagnose, Plausibilitätsprüfung und einer nachvollziehbaren Empfehlung, bevor ein Reparaturweg freigegeben wird.',
+  },
+  {
+    question: 'Ist 888CH-LAB nur für bestimmte Marken?',
+    answer:
+      'Die Diagnose- und Serviceleistungen sind für viele Marken ausgelegt. Bei speziellen Steuergerätethemen wird der Fall vorab sauber eingeordnet.',
+  },
+  {
+    question: 'Wie schnell bekomme ich eine Rückmeldung?',
+    answer:
+      'Bei WhatsApp-Anfragen ist das Ziel eine zügige Rückmeldung mit klarer Einordnung, besonders bei Warnlampen, MFK-Fragen und akuten Symptomen.',
   },
 ]
 
@@ -466,6 +508,24 @@ function App() {
         </div>
       </section>
 
+      <section className="proof-strip border-y border-white/10 bg-[#141416] px-5 py-5 md:px-8">
+        <div className="mx-auto grid max-w-7xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {proofStats.map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: index * 0.05 }}
+              className="rounded border border-white/10 bg-white/[0.04] px-5 py-4"
+            >
+              <p className="text-3xl font-semibold text-white">{stat.value}</p>
+              <p className="mt-1 text-sm text-zinc-400">{stat.label}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       <section className="bg-[#0b0b0d] px-5 py-16 md:px-8 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch">
           <Reveal className="rounded border border-white/10 bg-[#1a1a1a] p-7 md:p-9">
@@ -525,7 +585,7 @@ function App() {
               </div>
             </div>
             <a
-              href={whatsappHref}
+              href={selectedIssue.whatsapp}
               className="mt-7 inline-flex items-center justify-center gap-3 rounded bg-[#e11d2e] px-6 py-4 font-semibold text-white shadow-[0_18px_45px_rgba(225,29,46,0.28)] transition hover:bg-[#f43f5e]"
               target="_blank"
               rel="noreferrer"
@@ -874,6 +934,29 @@ function App() {
         </div>
       </section>
 
+      <section className="bg-[#0b0b0d] px-5 py-20 md:px-8 md:py-28">
+        <SectionHeading
+          eyebrow="Gut zu wissen"
+          title="Antworten, bevor Unsicherheit entsteht."
+          text="Die häufigsten Fragen werden direkt geklärt, damit der erste Kontakt einfach und angenehm bleibt."
+        />
+        <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-2">
+          {faqs.map((faq, index) => (
+            <Reveal key={faq.question} delay={index * 0.06}>
+              <div className="h-full rounded border border-white/10 bg-[#1a1a1a] p-7">
+                <div className="mb-5 flex items-center gap-3">
+                  <div className="grid h-10 w-10 place-items-center rounded bg-[#2dd4ff]/10 text-[#2dd4ff]">
+                    <Award className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-white">{faq.question}</h3>
+                </div>
+                <p className="leading-7 text-zinc-300">{faq.answer}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       <section id="standort" className="bg-[#141416] px-5 py-20 md:px-8 md:py-28">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.05fr_0.95fr]">
           <Reveal className="min-h-[420px] overflow-hidden rounded border border-white/10 bg-[#1a1a1a]">
@@ -935,6 +1018,15 @@ function App() {
             >
               <Phone className="h-5 w-5" />
               Jetzt direkt anrufen
+            </a>
+            <a
+              href={routeHref}
+              className="mt-3 inline-flex w-full items-center justify-center gap-3 rounded border border-white/15 bg-white/8 px-6 py-4 font-semibold text-white transition hover:bg-white/14 sm:ml-3 sm:mt-9 sm:w-auto"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Route className="h-5 w-5 text-[#2dd4ff]" />
+              Route starten
             </a>
             <a
               href={whatsappHref}
