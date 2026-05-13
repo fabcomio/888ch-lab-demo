@@ -201,7 +201,7 @@ function App() {
           alt="Saubere, hochwertige Werkstatt mit Fahrzeug auf der Hebebuehne"
           className="absolute inset-0 -z-20 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(11,11,13,0.98)_0%,rgba(11,11,13,0.82)_42%,rgba(11,11,13,0.38)_100%)]" />
+        <div className="hero-overlay absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(11,11,13,0.98)_0%,rgba(11,11,13,0.82)_42%,rgba(11,11,13,0.38)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-[#0b0b0d] to-transparent" />
 
         <div className="mx-auto grid min-h-[calc(100vh-76px)] max-w-7xl items-center gap-10 px-5 py-20 md:grid-cols-[1.05fr_0.95fr] md:px-8">
@@ -331,7 +331,7 @@ function App() {
             </p>
             <a
               href="#standort"
-              className="mt-8 inline-flex items-center gap-3 rounded border border-[#2dd4ff]/45 bg-[#2dd4ff]/10 px-5 py-4 font-semibold text-white transition hover:bg-[#2dd4ff]/18"
+              className="season-cta mt-8 inline-flex items-center gap-3 rounded border border-[#2dd4ff]/45 bg-[#2dd4ff]/10 px-5 py-4 font-semibold text-white transition hover:bg-[#2dd4ff]/18"
             >
               Saison-Termin sichern
               <ArrowRight className="h-5 w-5" />

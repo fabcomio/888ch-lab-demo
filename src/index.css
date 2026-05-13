@@ -29,7 +29,7 @@ body {
 
 html[data-theme="light"],
 html[data-theme="light"] body {
-  background: #f4f6f8;
+  background: #f3f5f8;
 }
 
 .theme-shell {
@@ -39,60 +39,130 @@ html[data-theme="light"] body {
 }
 
 .theme-shell.light-mode {
-  background: #f4f6f8 !important;
-  color: #18181b !important;
+  background: #f3f5f8 !important;
+  color: #101419 !important;
 }
 
 .theme-shell.light-mode header {
-  border-color: rgba(24, 24, 27, 0.1) !important;
-  background: rgba(255, 255, 255, 0.9) !important;
-  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  background: rgba(248, 250, 252, 0.94) !important;
+  box-shadow: 0 16px 44px rgba(15, 23, 42, 0.1);
 }
 
 .theme-shell.light-mode section {
-  background-color: #f4f6f8 !important;
+  background-color: #f3f5f8 !important;
 }
 
 .theme-shell.light-mode section:nth-of-type(3),
 .theme-shell.light-mode section:nth-of-type(5) {
-  background-color: #e9edf2 !important;
+  background-color: #e6ebf1 !important;
 }
 
 .theme-shell.light-mode h1,
 .theme-shell.light-mode h2,
-.theme-shell.light-mode h3,
-.theme-shell.light-mode .text-white {
-  color: #111827 !important;
+.theme-shell.light-mode h3 {
+  color: #101419 !important;
 }
 
 .theme-shell.light-mode p,
 .theme-shell.light-mode .text-zinc-200,
 .theme-shell.light-mode .text-zinc-300,
 .theme-shell.light-mode .text-zinc-400 {
-  color: #3f4652 !important;
+  color: #334155 !important;
+}
+
+.theme-shell.light-mode header .text-white,
+.theme-shell.light-mode header .text-zinc-300 {
+  color: #101419 !important;
+}
+
+.theme-shell.light-mode header a:hover {
+  color: #0f172a !important;
+}
+
+.theme-shell.light-mode #top,
+.theme-shell.light-mode #top h1,
+.theme-shell.light-mode #top h2,
+.theme-shell.light-mode #top h3,
+.theme-shell.light-mode #top p,
+.theme-shell.light-mode #top .text-white,
+.theme-shell.light-mode #top .text-zinc-200,
+.theme-shell.light-mode #top .text-zinc-300 {
+  color: #ffffff !important;
+}
+
+.theme-shell.light-mode .hero-overlay {
+  background: linear-gradient(
+    90deg,
+    rgba(8, 12, 18, 0.92) 0%,
+    rgba(8, 12, 18, 0.74) 48%,
+    rgba(8, 12, 18, 0.34) 100%
+  ) !important;
 }
 
 .theme-shell.light-mode .bg-\[\#1a1a1a\],
 .theme-shell.light-mode .bg-\[\#141416\],
 .theme-shell.light-mode .bg-\[\#0b0b0d\],
 .theme-shell.light-mode .bg-white\/\[0\.04\] {
-  background-color: rgba(255, 255, 255, 0.88) !important;
+  background-color: rgba(255, 255, 255, 0.94) !important;
 }
 
 .theme-shell.light-mode .border-white\/10,
 .theme-shell.light-mode .border-white\/12,
 .theme-shell.light-mode .border-white\/15 {
-  border-color: rgba(17, 24, 39, 0.12) !important;
+  border-color: rgba(15, 23, 42, 0.14) !important;
 }
 
 .theme-shell.light-mode .bg-white\/5,
 .theme-shell.light-mode .bg-white\/8 {
-  background-color: rgba(17, 24, 39, 0.06) !important;
+  background-color: rgba(15, 23, 42, 0.07) !important;
 }
 
 .theme-shell.light-mode .shadow-xl,
 .theme-shell.light-mode .shadow-2xl {
-  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.14) !important;
+}
+
+.theme-shell.light-mode article,
+.theme-shell.light-mode #standort .rounded,
+.theme-shell.light-mode section:not(#top) .rounded.border {
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.09);
+}
+
+.theme-shell.light-mode .season-cta {
+  border-color: rgba(2, 132, 199, 0.36) !important;
+  background-color: rgba(2, 132, 199, 0.1) !important;
+  color: #0f172a !important;
+}
+
+.theme-shell.light-mode .season-cta:hover {
+  background-color: rgba(2, 132, 199, 0.16) !important;
+}
+
+.theme-shell.light-mode a.bg-\[\#e11d2e\],
+.theme-shell.light-mode .bg-\[\#e11d2e\] {
+  color: #ffffff !important;
+}
+
+.theme-shell.light-mode .text-\[\#2dd4ff\] {
+  color: #0277a8 !important;
+}
+
+.theme-shell.light-mode #top .text-\[\#2dd4ff\],
+.theme-shell.light-mode header .text-\[\#2dd4ff\] {
+  color: #2dd4ff !important;
+}
+
+.theme-shell.light-mode .text-\[\#e11d2e\] {
+  color: #be123c !important;
+}
+
+.theme-shell.light-mode .bg-\[\#2dd4ff\]\/10 {
+  background-color: rgba(2, 132, 199, 0.12) !important;
+}
+
+.theme-shell.light-mode .bg-\[\#e11d2e\]\/14 {
+  background-color: rgba(190, 18, 60, 0.1) !important;
 }
 
 button,
