@@ -5,6 +5,7 @@ import {
   ArrowRight,
   Award,
   BadgeCheck,
+  CalendarClock,
   Car,
   CheckCircle2,
   ClipboardCheck,
@@ -63,6 +64,25 @@ const intakeBenefits = [
   'Foto oder Video kann direkt nachgereicht werden',
   'Dringlichkeit ist sofort sichtbar',
   'Werkstatt kann Diagnosezeit besser planen',
+]
+
+const appointmentSlots = [
+  { time: 'Heute 16:30', type: 'Kurzcheck', note: 'ideal bei Warnlampe' },
+  { time: 'Morgen 10:15', type: 'Diagnose', note: '60 Min. reservieren' },
+  { time: 'Freitag 14:00', type: 'MFK-Check', note: 'Kontrollpunkte pruefen' },
+]
+
+const prepChecklist = [
+  'Fahrzeugausweis bereithalten',
+  'Foto der Warnlampe senden',
+  'Kilometerstand notieren',
+  'Symptom kurz beschreiben',
+]
+
+const quickReplies = [
+  'Danke fuer die Daten. Bitte senden Sie noch ein Foto der Warnlampe und den Kilometerstand.',
+  'Wir empfehlen zuerst eine Diagnose. Ein passender Slot waere morgen um 10:15 Uhr.',
+  'Fuer die MFK-Vorbereitung bitte Fahrzeugausweis und letzten Pruefbericht mitbringen.',
 ]
 
 const serviceCards = [
@@ -348,8 +368,9 @@ function App() {
   const isLight = theme === 'light'
   const [selectedIssue, setSelectedIssue] = useState(issueOptions[0])
   const [intake, setIntake] = useState(intakeDefaults)
+  const [selectedSlot, setSelectedSlot] = useState(appointmentSlots[1])
   const SelectedIssueIcon = selectedIssue.icon
-  const intakeMessage = `Guten Tag 888CH-LAB, ich möchte eine Diagnose anfragen.%0A%0AFahrzeug: ${intake.brand} ${intake.model}, ${intake.year}%0AKilometer: ${intake.mileage} km%0AProblem: ${intake.issue}%0ADringlichkeit: ${intake.urgency}%0A%0AIch kann Fotos oder ein Video vom Fehlerbild senden.`
+  const intakeMessage = `Guten Tag 888CH-LAB, ich möchte eine Diagnose anfragen.%0A%0AFahrzeug: ${intake.brand} ${intake.model}, ${intake.year}%0AKilometer: ${intake.mileage} km%0AProblem: ${intake.issue}%0ADringlichkeit: ${intake.urgency}%0AWunschtermin: ${selectedSlot.time} (${selectedSlot.type})%0A%0AIch kann Fotos oder ein Video vom Fehlerbild senden.`
   const intakeWhatsappHref = `https://wa.me/41766063838?text=${intakeMessage}`
   const displayMileage = Number(intake.mileage || 0).toLocaleString('de-CH')
 
@@ -723,6 +744,34 @@ function App() {
                 ))}
               </div>
             </div>
+            <div className="mt-6 rounded border border-white/10 bg-white/[0.04] p-5">
+              <div className="mb-4 flex items-center gap-3">
+                <CalendarClock className="h-5 w-5 text-[#2dd4ff]" />
+                <p className="font-semibold text-white">Passenden Werkstatt-Slot vormerken</p>
+              </div>
+              <div className="grid gap-3">
+                {appointmentSlots.map((slot) => (
+                  <button
+                    key={slot.time}
+                    type="button"
+                    onClick={() => setSelectedSlot(slot)}
+                    className={`flex items-center justify-between gap-4 rounded border px-4 py-3 text-left transition ${
+                      selectedSlot.time === slot.time
+                        ? 'border-[#2dd4ff] bg-[#2dd4ff]/12'
+                        : 'border-white/10 bg-[#1a1a1a] hover:bg-white/8'
+                    }`}
+                  >
+                    <span>
+                      <span className="block font-semibold text-white">{slot.time}</span>
+                      <span className="block text-sm text-zinc-400">{slot.note}</span>
+                    </span>
+                    <span className="rounded bg-white/8 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#2dd4ff]">
+                      {slot.type}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
             <div className="mt-7 grid gap-3">
               {intakeBenefits.map((benefit) => (
                 <div key={benefit} className="flex items-center gap-3 text-zinc-300">
@@ -752,6 +801,7 @@ function App() {
                 <p>Kilometer: {displayMileage} km</p>
                 <p>Problem: {intake.issue}</p>
                 <p>Dringlichkeit: {intake.urgency}</p>
+                <p>Wunschtermin: {selectedSlot.time} ({selectedSlot.type})</p>
                 <p className="mt-4">Ich kann Fotos oder ein Video vom Fehlerbild senden.</p>
               </div>
               <a
@@ -773,6 +823,7 @@ function App() {
                 {[
                   ['Neue Anfrage', `${intake.brand} ${intake.model}`, intake.urgency],
                   ['Problemtyp', intake.issue, 'Foto erwartet'],
+                  ['Terminwunsch', `${selectedSlot.time} · ${selectedSlot.type}`, selectedSlot.note],
                   ['Planung', 'Diagnose-Slot vorbereiten', 'priorisiert'],
                 ].map(([label, value, badge]) => (
                   <div key={label} className="flex items-center gap-4 rounded border border-white/10 bg-white/[0.04] p-4">
@@ -834,6 +885,47 @@ function App() {
                   </li>
                 ))}
               </ul>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-[#0b0b0d] px-5 py-20 md:px-8 md:py-28">
+        <SectionHeading
+          eyebrow="Zeit sparen nach der Anfrage"
+          title="Der Kunde kommt vorbereitet. Die Garage antwortet schneller."
+          text="Vorbereitungscheckliste und Antwortvorlagen machen aus einer Anfrage direkt einen planbaren Werkstattprozess."
+        />
+        <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[0.9fr_1.1fr]">
+          <Reveal className="rounded border border-white/10 bg-[#1a1a1a] p-7">
+            <div className="mb-5 flex items-center gap-3">
+              <ClipboardCheck className="h-7 w-7 text-[#2dd4ff]" />
+              <h3 className="text-2xl font-semibold text-white">Kunden-Checkliste vor dem Termin</h3>
+            </div>
+            <div className="grid gap-3">
+              {prepChecklist.map((item) => (
+                <div key={item} className="flex items-center gap-3 rounded border border-white/10 bg-white/[0.04] p-4 text-zinc-200">
+                  <CheckCircle2 className="h-5 w-5 text-emerald-400" />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1} className="rounded border border-white/10 bg-[#141416] p-7">
+            <div className="mb-5 flex items-center gap-3">
+              <MessageCircle className="h-7 w-7 text-emerald-400" />
+              <h3 className="text-2xl font-semibold text-white">Quick Replies für den Garagisten</h3>
+            </div>
+            <div className="grid gap-3">
+              {quickReplies.map((reply, index) => (
+                <div key={reply} className="rounded border border-white/10 bg-white/[0.04] p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#2dd4ff]">
+                    Vorlage 0{index + 1}
+                  </p>
+                  <p className="mt-2 leading-7 text-zinc-200">{reply}</p>
+                </div>
+              ))}
             </div>
           </Reveal>
         </div>
