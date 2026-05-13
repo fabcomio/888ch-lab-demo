@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   ArrowRight,
@@ -8,6 +9,7 @@ import {
   Clock,
   Gauge,
   MapPin,
+  Moon,
   Phone,
   ShieldCheck,
   Snowflake,
@@ -127,8 +129,24 @@ function SectionHeading({ eyebrow, title, text }) {
 }
 
 function App() {
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === 'undefined') return 'dark'
+
+    return (
+      window.localStorage.getItem('theme') ||
+      (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+    )
+  })
+
+  const isLight = theme === 'light'
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    window.localStorage.setItem('theme', theme)
+  }, [theme])
+
   return (
-    <main className="min-h-screen bg-[#0b0b0d] text-zinc-100">
+    <main className={`theme-shell min-h-screen bg-[#0b0b0d] text-zinc-100 ${isLight ? 'light-mode' : ''}`}>
       <header className="sticky top-0 z-50 border-b border-white/10 bg-[#1a1a1a]/90 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
           <a href="#top" className="flex items-center gap-3" aria-label="888CH-LAB Startseite">
@@ -155,14 +173,25 @@ function App() {
             </a>
           </div>
 
-          <a
-            href={phoneHref}
-            className="inline-flex items-center gap-2 rounded bg-[#e11d2e] px-4 py-3 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(225,29,46,0.28)] transition hover:bg-[#f43f5e] focus:outline-none focus:ring-2 focus:ring-[#2dd4ff]"
-          >
-            <Phone className="h-4 w-4" />
-            <span className="hidden sm:inline">Direkt-Anruf</span>
-            <span className="sm:hidden">Anruf</span>
-          </a>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setTheme(isLight ? 'dark' : 'light')}
+              className="inline-flex h-11 w-11 items-center justify-center rounded border border-white/15 bg-white/8 text-white backdrop-blur transition hover:bg-white/14 focus:outline-none focus:ring-2 focus:ring-[#2dd4ff]"
+              aria-label={isLight ? 'Dunkelmodus aktivieren' : 'Hellmodus aktivieren'}
+              title={isLight ? 'Dunkelmodus aktivieren' : 'Hellmodus aktivieren'}
+            >
+              {isLight ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+            </button>
+            <a
+              href={phoneHref}
+              className="inline-flex items-center gap-2 rounded bg-[#e11d2e] px-4 py-3 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(225,29,46,0.28)] transition hover:bg-[#f43f5e] focus:outline-none focus:ring-2 focus:ring-[#2dd4ff]"
+            >
+              <Phone className="h-4 w-4" />
+              <span className="hidden sm:inline">Direkt-Anruf</span>
+              <span className="sm:hidden">Anruf</span>
+            </a>
+          </div>
         </nav>
       </header>
 

@@ -27,6 +27,74 @@ body {
   background: #0b0b0d;
 }
 
+html[data-theme="light"],
+html[data-theme="light"] body {
+  background: #f4f6f8;
+}
+
+.theme-shell {
+  transition:
+    background-color 220ms ease,
+    color 220ms ease;
+}
+
+.theme-shell.light-mode {
+  background: #f4f6f8 !important;
+  color: #18181b !important;
+}
+
+.theme-shell.light-mode header {
+  border-color: rgba(24, 24, 27, 0.1) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+}
+
+.theme-shell.light-mode section {
+  background-color: #f4f6f8 !important;
+}
+
+.theme-shell.light-mode section:nth-of-type(3),
+.theme-shell.light-mode section:nth-of-type(5) {
+  background-color: #e9edf2 !important;
+}
+
+.theme-shell.light-mode h1,
+.theme-shell.light-mode h2,
+.theme-shell.light-mode h3,
+.theme-shell.light-mode .text-white {
+  color: #111827 !important;
+}
+
+.theme-shell.light-mode p,
+.theme-shell.light-mode .text-zinc-200,
+.theme-shell.light-mode .text-zinc-300,
+.theme-shell.light-mode .text-zinc-400 {
+  color: #3f4652 !important;
+}
+
+.theme-shell.light-mode .bg-\[\#1a1a1a\],
+.theme-shell.light-mode .bg-\[\#141416\],
+.theme-shell.light-mode .bg-\[\#0b0b0d\],
+.theme-shell.light-mode .bg-white\/\[0\.04\] {
+  background-color: rgba(255, 255, 255, 0.88) !important;
+}
+
+.theme-shell.light-mode .border-white\/10,
+.theme-shell.light-mode .border-white\/12,
+.theme-shell.light-mode .border-white\/15 {
+  border-color: rgba(17, 24, 39, 0.12) !important;
+}
+
+.theme-shell.light-mode .bg-white\/5,
+.theme-shell.light-mode .bg-white\/8 {
+  background-color: rgba(17, 24, 39, 0.06) !important;
+}
+
+.theme-shell.light-mode .shadow-xl,
+.theme-shell.light-mode .shadow-2xl {
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.12) !important;
+}
+
 button,
 a {
   -webkit-tap-highlight-color: transparent;
