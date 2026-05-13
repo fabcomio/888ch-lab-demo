@@ -85,6 +85,160 @@ const quickReplies = [
   'Fuer die MFK-Vorbereitung bitte Fahrzeugausweis und letzten Pruefbericht mitbringen.',
 ]
 
+const experienceFeatures = [
+  {
+    title: 'Digitaler Fahrzeugpass',
+    text: 'Kunde speichert Marke, Modell, Kilometerstand und relevante Hinweise fuer kuenftige Termine.',
+    icon: Car,
+    tag: 'Kunde',
+  },
+  {
+    title: 'MFK-Countdown',
+    text: 'Zeigt, wann die Kontrolle naeherrueckt und welche Punkte vorher geprueft werden sollten.',
+    icon: ClipboardCheck,
+    tag: 'Planung',
+  },
+  {
+    title: 'Service-Erinnerung',
+    text: 'Erinnert an Wartung, Oel, Filter, Reifenwechsel und saisonale Checks.',
+    icon: CalendarClock,
+    tag: 'Reminder',
+  },
+  {
+    title: 'Warnlampen-Assistent',
+    text: 'Fuehrt Kunden von der Warnlampe zur richtigen Diagnose-Anfrage mit Foto-Hinweis.',
+    icon: Activity,
+    tag: 'Diagnose',
+  },
+  {
+    title: 'Foto-Checkliste',
+    text: 'Zeigt, welche Bilder der Kunde senden soll: Tacho, Warnlampe, Schaden, Fahrzeugausweis.',
+    icon: SearchCheck,
+    tag: 'Upload',
+  },
+  {
+    title: 'Kostenrahmen-Orientierung',
+    text: 'Erklaert Einstiegspreise und was vor einer verbindlichen Offerte geprueft werden muss.',
+    icon: BadgeCheck,
+    tag: 'Preis',
+  },
+  {
+    title: 'Reifen-Hotel',
+    text: 'Saison, Profiltiefe, Lagerstatus und naechster Wechsel bleiben fuer Kunde und Garage sichtbar.',
+    icon: Gauge,
+    tag: 'Reifen',
+  },
+  {
+    title: 'Batterie-Check',
+    text: 'Winterrelevante Batteriepruefung wird direkt als saisonale Empfehlung sichtbar.',
+    icon: Zap,
+    tag: 'Saison',
+  },
+  {
+    title: 'Flotten-Modus',
+    text: 'Mehrere Fahrzeuge koennen als Firmenkunden-Anfrage strukturiert vorbereitet werden.',
+    icon: Inbox,
+    tag: 'Business',
+  },
+  {
+    title: 'Ersatzwagen-Anfrage',
+    text: 'Kunde kann frueh signalisieren, ob Mobilitaet waehrend der Reparatur wichtig ist.',
+    icon: Route,
+    tag: 'Komfort',
+  },
+  {
+    title: 'Abhol- und Bringservice',
+    text: 'Option fuer Kunden, die keine Zeit fuer Werkstattlogistik verlieren wollen.',
+    icon: MapPin,
+    tag: 'Komfort',
+  },
+  {
+    title: 'Freigabe per WhatsApp',
+    text: 'Garagist kann Diagnose, Empfehlung und naechsten Schritt klar zur Freigabe senden.',
+    icon: MessageCircle,
+    tag: 'Freigabe',
+  },
+  {
+    title: 'Reparatur-Status',
+    text: 'Statuskarten zeigen: Anfrage erhalten, Diagnose geplant, in Arbeit, abholbereit.',
+    icon: Timer,
+    tag: 'Status',
+  },
+  {
+    title: 'Service-Historie',
+    text: 'Vergangene Arbeiten und Empfehlungen werden als kundenfreundlicher Verlauf dargestellt.',
+    icon: FileCheck2,
+    tag: 'Historie',
+  },
+  {
+    title: 'Video-Diagnose',
+    text: 'Kurze Clips koennen Symptome zeigen, bevor das Fahrzeug vor Ort ist.',
+    icon: PlayCircle,
+    tag: 'Video',
+  },
+  {
+    title: 'Versicherungs-Export',
+    text: 'Schadeninfos, Bilder und Kontaktdaten werden sauber fuer Versicherungsfaelle vorbereitet.',
+    icon: ShieldCheck,
+    tag: 'Dokumente',
+  },
+  {
+    title: 'Rechnungsarchiv',
+    text: 'Kunden finden Orientierung zu Arbeiten, Belegen und wiederkehrenden Services.',
+    icon: Award,
+    tag: 'Archiv',
+  },
+  {
+    title: 'Notfall-Modus',
+    text: 'Bei akuten Problemen sieht der Kunde sofort, was er senden und ob er weiterfahren sollte.',
+    icon: Phone,
+    tag: 'Akut',
+  },
+  {
+    title: 'Saisonberater',
+    text: 'Sommer, Winter und MFK werden als klare saisonale Handlungsempfehlungen ausgespielt.',
+    icon: Snowflake,
+    tag: 'Saison',
+  },
+  {
+    title: 'Performance-Protokoll',
+    text: 'Leistungsverlust, Ruckeln oder Verbrauch werden strukturiert fuer die Diagnose erfasst.',
+    icon: Gauge,
+    tag: 'Performance',
+  },
+  {
+    title: 'Teile-Freigabe',
+    text: 'Empfohlene Teile, Prioritaet und Freigabe werden fuer den Kunden klar erklaert.',
+    icon: Wrench,
+    tag: 'Freigabe',
+  },
+  {
+    title: 'Google-Bewertungsfluss',
+    text: 'Nach erfolgreicher Arbeit kann die Garage Kunden gezielt zur Bewertung fuehren.',
+    icon: Star,
+    tag: 'Review',
+  },
+  {
+    title: 'Stammkunden-Vorteile',
+    text: 'Wiederkehrende Kunden erkennen Services, Historie und saisonale Empfehlungen schneller.',
+    icon: UserCheck,
+    tag: 'Bindung',
+  },
+  {
+    title: 'Werkstatt-Kapazitaet',
+    text: 'Anfragen werden nach Dringlichkeit und Zeitfenster besser planbar.',
+    icon: Target,
+    tag: 'Garage',
+  },
+]
+
+const workflowStatuses = [
+  ['Anfrage erhalten', 'Fahrzeugdaten komplett', 'text-emerald-400'],
+  ['Foto erwartet', 'Warnlampe / Schadenbild', 'text-[#2dd4ff]'],
+  ['Slot reserviert', 'Morgen 10:15 Diagnose', 'text-[#e11d2e]'],
+  ['Quick Reply bereit', 'Antwort in 1 Klick', 'text-emerald-400'],
+]
+
 const serviceCards = [
   {
     title: 'Service & Wartung',
@@ -369,7 +523,9 @@ function App() {
   const [selectedIssue, setSelectedIssue] = useState(issueOptions[0])
   const [intake, setIntake] = useState(intakeDefaults)
   const [selectedSlot, setSelectedSlot] = useState(appointmentSlots[1])
+  const [selectedFeature, setSelectedFeature] = useState(experienceFeatures[0])
   const SelectedIssueIcon = selectedIssue.icon
+  const SelectedFeatureIcon = selectedFeature.icon
   const intakeMessage = `Guten Tag 888CH-LAB, ich möchte eine Diagnose anfragen.%0A%0AFahrzeug: ${intake.brand} ${intake.model}, ${intake.year}%0AKilometer: ${intake.mileage} km%0AProblem: ${intake.issue}%0ADringlichkeit: ${intake.urgency}%0AWunschtermin: ${selectedSlot.time} (${selectedSlot.type})%0A%0AIch kann Fotos oder ein Video vom Fehlerbild senden.`
   const intakeWhatsappHref = `https://wa.me/41766063838?text=${intakeMessage}`
   const displayMileage = Number(intake.mileage || 0).toLocaleString('de-CH')
@@ -926,6 +1082,92 @@ function App() {
                   <p className="mt-2 leading-7 text-zinc-200">{reply}</p>
                 </div>
               ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-[#141416] px-5 py-20 md:px-8 md:py-28">
+        <SectionHeading
+          eyebrow="Automotive Experience Suite"
+          title="24 Funktionen, die aus einer Website ein digitales Werkstatt-Erlebnis machen."
+          text="Kunden verstehen schneller, was zu tun ist. Die Garage erhaelt bessere Informationen, weniger Rueckfragen und planbarere Termine."
+        />
+        <div className="mx-auto grid max-w-7xl gap-6 xl:grid-cols-[1.2fr_0.8fr]">
+          <Reveal>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {experienceFeatures.map((feature) => {
+                const Icon = feature.icon
+                const active = selectedFeature.title === feature.title
+                return (
+                  <button
+                    key={feature.title}
+                    type="button"
+                    onClick={() => setSelectedFeature(feature)}
+                    className={`group rounded border p-4 text-left transition ${
+                      active
+                        ? 'border-[#2dd4ff] bg-[#2dd4ff]/12 shadow-[0_18px_45px_rgba(45,212,255,0.12)]'
+                        : 'border-white/10 bg-white/[0.04] hover:border-white/20 hover:bg-white/8'
+                    }`}
+                  >
+                    <div className="mb-4 flex items-center justify-between gap-3">
+                      <span className="grid h-11 w-11 place-items-center rounded bg-[#2dd4ff]/10 text-[#2dd4ff]">
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <span className="rounded bg-white/8 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-zinc-300">
+                        {feature.tag}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-zinc-300">{feature.text}</p>
+                  </button>
+                )
+              })}
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1} className="space-y-6">
+            <div className="rounded border border-white/10 bg-[#1a1a1a] p-7 shadow-2xl">
+              <div className="mb-6 flex items-start gap-4">
+                <div className="grid h-14 w-14 shrink-0 place-items-center rounded bg-[#e11d2e]/14 text-[#e11d2e]">
+                  <SelectedFeatureIcon className="h-7 w-7" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#2dd4ff]">
+                    Ausgewaehlte Funktion
+                  </p>
+                  <h3 className="mt-2 text-3xl font-semibold text-white">{selectedFeature.title}</h3>
+                </div>
+              </div>
+              <p className="text-lg leading-8 text-zinc-300">{selectedFeature.text}</p>
+              <div className="mt-7 rounded border border-white/10 bg-white/[0.04] p-5">
+                <p className="font-semibold text-white">Effekt fuer Garage und Kunde</p>
+                <p className="mt-2 leading-7 text-zinc-300">
+                  Weniger unklare Nachrichten, mehr Kontext vor dem Termin und ein professioneller Ablauf,
+                  der wie ein digitales Service-Cockpit wirkt.
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded border border-white/10 bg-[#1a1a1a] p-7">
+              <div className="mb-5 flex items-center gap-3">
+                <Activity className="h-7 w-7 text-[#2dd4ff]" />
+                <h3 className="text-2xl font-semibold text-white">Live Workflow</h3>
+              </div>
+              <div className="space-y-3">
+                {workflowStatuses.map(([label, value, tone], index) => (
+                  <div key={label} className="flex items-center gap-4 rounded border border-white/10 bg-white/[0.04] p-4">
+                    <span className="grid h-9 w-9 place-items-center rounded bg-white/8 text-sm font-semibold text-white">
+                      0{index + 1}
+                    </span>
+                    <div>
+                      <p className="font-semibold text-white">{label}</p>
+                      <p className="text-sm text-zinc-400">{value}</p>
+                    </div>
+                    <CheckCircle2 className={`ml-auto h-5 w-5 ${tone}`} />
+                  </div>
+                ))}
+              </div>
             </div>
           </Reveal>
         </div>
