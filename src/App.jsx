@@ -277,7 +277,7 @@ function App() {
         <SectionHeading
           eyebrow="Die Diagnose-Zentrale"
           title="Vier Einstiege, ein klares Ziel: Ihr Fahrzeug kommt zuverlässig weiter."
-          text="Die Service-Struktur ist bewusst einfach gehalten: Kunden erkennen sofort den passenden Bedarf, während das Team gezielt Zusatzpotenzial entdeckt."
+          text="Die Service-Struktur ist bewusst einfach gehalten: Sie erkennen sofort den passenden Bereich und erhalten eine klare Einschätzung zum nächsten sinnvollen Schritt."
         />
 
         <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-2 xl:grid-cols-4">
@@ -319,15 +319,15 @@ function App() {
         <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-center">
           <Reveal>
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-[#2dd4ff]">
-              Portfolio-Boost
+              Saison-Services
             </p>
             <h2 className="text-3xl font-semibold tracking-normal text-white md:text-5xl">
-              Saisonale Specials, die monatlich neue Werkstatttermine auslösen.
+              Regelmässige Checks für Sicherheit, Komfort und zuverlässige Mobilität.
             </h2>
             <p className="mt-5 text-lg leading-8 text-zinc-300">
-              Statt nur auf akute Defekte zu warten, holt 888CH-LAB Kunden mit
-              relevanten Checks genau dann ab, wenn Bedarf und Zahlungsbereitschaft
-              am höchsten sind.
+              888CH-LAB prüft saisonrelevante Komponenten frühzeitig und transparent,
+              damit kleine Auffälligkeiten nicht erst bei Hitze, Kälte oder der nächsten
+              Kontrolle zum Problem werden.
             </p>
             <a
               href="#standort"
@@ -363,7 +363,7 @@ function App() {
         <SectionHeading
           eyebrow="Vertrauens-Check"
           title="Argumente, die vor dem ersten Anruf Vertrauen schaffen."
-          text="Die wichtigsten Kaufbarrieren werden direkt beantwortet: Preis, Qualität und Nähe."
+          text="Klare Kommunikation, sorgfältige Arbeit und regionale Nähe bilden die Grundlage für eine verlässliche Betreuung."
         />
         <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-3">
           {trustItems.map((item, index) => {

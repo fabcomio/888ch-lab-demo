@@ -1,6 +1,6 @@
 # 888CH-LAB Landingpage Demo
 
-Conversion-orientierte React-Demo fuer die Schweizer Automobilbranche mit modernem Dark-Mechanic-Design.
+Professionelle React-Demo fuer eine Schweizer Garage mit modernem Dark-Mechanic-Design.
 
 ## Stack
 
@@ -15,8 +15,8 @@ Conversion-orientierte React-Demo fuer die Schweizer Automobilbranche mit modern
 - Sticky Navigation mit Direkt-Anruf
 - Hero-Sektion fuer 888CH-LAB
 - Diagnose-Zentrale mit vier Service-Karten
-- Saisonale Specials zur Umsatzsteigerung
-- Vertrauens-Check mit drei Kaufargumenten
+- Saisonale Services fuer planbare Fahrzeugpflege
+- Vertrauens-Check mit drei Qualitaetsargumenten
 - Kontakt- und Standortbereich fuer Oberentfelden
 
 ## Entwicklung
