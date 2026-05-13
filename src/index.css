@@ -247,6 +247,22 @@ html[data-theme="light"] body {
   background-color: rgba(255, 255, 255, 0.9) !important;
 }
 
+.theme-shell.light-mode input {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(15, 23, 42, 0.16) !important;
+  color: #0f172a !important;
+}
+
+.theme-shell.light-mode label span,
+.theme-shell.light-mode ul,
+.theme-shell.light-mode li {
+  color: #334155 !important;
+}
+
+.theme-shell.light-mode .bg-emerald-400\/10 {
+  background-color: rgba(5, 150, 105, 0.1) !important;
+}
+
 button,
 a {
   -webkit-tap-highlight-color: transparent;

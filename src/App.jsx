@@ -12,6 +12,7 @@ import {
   Cpu,
   FileCheck2,
   Gauge,
+  Inbox,
   MapPin,
   MessageCircle,
   Moon,
@@ -27,6 +28,7 @@ import {
   Sun,
   Target,
   Timer,
+  UserCheck,
   Wrench,
   Zap,
 } from 'lucide-react'
@@ -43,6 +45,24 @@ const proofStats = [
   { value: '24h', label: 'Antwortziel per WhatsApp' },
   { value: 'Aarau', label: 'Region' },
   { value: 'MFK', label: 'kontrollbereit' },
+]
+
+const intakeDefaults = {
+  brand: 'BMW',
+  model: '320d',
+  year: '2017',
+  mileage: '145000',
+  issue: 'Motorkontrolllampe leuchtet',
+  urgency: 'Diese Woche',
+}
+
+const urgencyOptions = ['Heute', 'Diese Woche', 'MFK in 14 Tagen', 'Planbar']
+
+const intakeBenefits = [
+  'Fahrzeugdaten vor dem ersten Telefonat',
+  'Foto oder Video kann direkt nachgereicht werden',
+  'Dringlichkeit ist sofort sichtbar',
+  'Werkstatt kann Diagnosezeit besser planen',
 ]
 
 const serviceCards = [
@@ -327,7 +347,11 @@ function App() {
 
   const isLight = theme === 'light'
   const [selectedIssue, setSelectedIssue] = useState(issueOptions[0])
+  const [intake, setIntake] = useState(intakeDefaults)
   const SelectedIssueIcon = selectedIssue.icon
+  const intakeMessage = `Guten Tag 888CH-LAB, ich möchte eine Diagnose anfragen.%0A%0AFahrzeug: ${intake.brand} ${intake.model}, ${intake.year}%0AKilometer: ${intake.mileage} km%0AProblem: ${intake.issue}%0ADringlichkeit: ${intake.urgency}%0A%0AIch kann Fotos oder ein Video vom Fehlerbild senden.`
+  const intakeWhatsappHref = `https://wa.me/41766063838?text=${intakeMessage}`
+  const displayMileage = Number(intake.mileage || 0).toLocaleString('de-CH')
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
@@ -646,6 +670,174 @@ function App() {
           </a>
         </div>
       </div>
+
+      <section className="bg-[#0b0b0d] px-5 py-20 md:px-8 md:py-28">
+        <SectionHeading
+          eyebrow="Werkstatt Intake-System"
+          title="Der Kunde liefert direkt verwertbare Informationen."
+          text="Aus einer vagen Nachricht wird eine strukturierte Anfrage: Fahrzeugdaten, Problem, Dringlichkeit und eine fertige WhatsApp-Vorlage für den Garagisten."
+        />
+        <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+          <Reveal className="rounded border border-white/10 bg-[#1a1a1a] p-6 md:p-8">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                ['brand', 'Marke'],
+                ['model', 'Modell'],
+                ['year', 'Jahrgang'],
+                ['mileage', 'Kilometer'],
+              ].map(([key, label]) => (
+                <label key={key} className="block">
+                  <span className="mb-2 block text-sm font-semibold text-zinc-300">{label}</span>
+                  <input
+                    value={intake[key]}
+                    onChange={(event) => setIntake({ ...intake, [key]: event.target.value })}
+                    className="w-full rounded border border-white/10 bg-white/[0.04] px-4 py-3 text-white outline-none transition focus:border-[#2dd4ff]"
+                  />
+                </label>
+              ))}
+            </div>
+            <label className="mt-4 block">
+              <span className="mb-2 block text-sm font-semibold text-zinc-300">Problem</span>
+              <input
+                value={intake.issue}
+                onChange={(event) => setIntake({ ...intake, issue: event.target.value })}
+                className="w-full rounded border border-white/10 bg-white/[0.04] px-4 py-3 text-white outline-none transition focus:border-[#2dd4ff]"
+              />
+            </label>
+            <div className="mt-5">
+              <p className="mb-3 text-sm font-semibold text-zinc-300">Dringlichkeit</p>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {urgencyOptions.map((option) => (
+                  <button
+                    key={option}
+                    type="button"
+                    onClick={() => setIntake({ ...intake, urgency: option })}
+                    className={`rounded border px-4 py-3 text-left font-semibold transition ${
+                      intake.urgency === option
+                        ? 'border-[#2dd4ff] bg-[#2dd4ff]/12 text-white'
+                        : 'border-white/10 bg-white/[0.04] text-zinc-300 hover:bg-white/8'
+                    }`}
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="mt-7 grid gap-3">
+              {intakeBenefits.map((benefit) => (
+                <div key={benefit} className="flex items-center gap-3 text-zinc-300">
+                  <CheckCircle2 className="h-5 w-5 text-emerald-400" />
+                  {benefit}
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1} className="grid gap-6">
+            <div className="rounded border border-white/10 bg-[#141416] p-6 md:p-8">
+              <div className="mb-5 flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#2dd4ff]">
+                    WhatsApp Vorschau
+                  </p>
+                  <h3 className="mt-2 text-2xl font-semibold text-white">Fertige Anfrage</h3>
+                </div>
+                <MessageCircle className="h-8 w-8 text-emerald-400" />
+              </div>
+              <div className="rounded border border-emerald-400/20 bg-emerald-400/10 p-5 leading-7 text-zinc-200">
+                <p>Guten Tag 888CH-LAB, ich möchte eine Diagnose anfragen.</p>
+                <p className="mt-4">
+                  Fahrzeug: {intake.brand} {intake.model}, {intake.year}
+                </p>
+                <p>Kilometer: {displayMileage} km</p>
+                <p>Problem: {intake.issue}</p>
+                <p>Dringlichkeit: {intake.urgency}</p>
+                <p className="mt-4">Ich kann Fotos oder ein Video vom Fehlerbild senden.</p>
+              </div>
+              <a
+                href={intakeWhatsappHref}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-6 inline-flex items-center justify-center gap-3 rounded bg-[#e11d2e] px-6 py-4 font-semibold text-white shadow-[0_18px_45px_rgba(225,29,46,0.28)] transition hover:bg-[#f43f5e]"
+              >
+                Diese Anfrage senden
+                <Send className="h-5 w-5" />
+              </a>
+            </div>
+            <div className="rounded border border-white/10 bg-[#1a1a1a] p-6 md:p-8">
+              <div className="mb-5 flex items-center gap-3">
+                <Inbox className="h-7 w-7 text-[#2dd4ff]" />
+                <h3 className="text-2xl font-semibold text-white">Garagisten-Inbox</h3>
+              </div>
+              <div className="space-y-3">
+                {[
+                  ['Neue Anfrage', `${intake.brand} ${intake.model}`, intake.urgency],
+                  ['Problemtyp', intake.issue, 'Foto erwartet'],
+                  ['Planung', 'Diagnose-Slot vorbereiten', 'priorisiert'],
+                ].map(([label, value, badge]) => (
+                  <div key={label} className="flex items-center gap-4 rounded border border-white/10 bg-white/[0.04] p-4">
+                    <UserCheck className="h-5 w-5 text-emerald-400" />
+                    <div>
+                      <p className="text-sm text-zinc-400">{label}</p>
+                      <p className="font-semibold text-white">{value}</p>
+                    </div>
+                    <span className="ml-auto rounded bg-[#2dd4ff]/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#2dd4ff]">
+                      {badge}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-[#141416] px-5 py-20 md:px-8 md:py-28">
+        <SectionHeading
+          eyebrow="Vorher / Nachher"
+          title="Von 'Auto kaputt' zu einer Anfrage, mit der die Werkstatt arbeiten kann."
+          text="Der Unterschied ist nicht nur optisch. Die neue Website reduziert Rückfragen und macht aus Besuchern vorbereitete Kunden."
+        />
+        <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-2">
+          <Reveal>
+            <div className="h-full rounded border border-white/10 bg-white/[0.04] p-7 opacity-80">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-zinc-400">
+                Klassische Website
+              </p>
+              <h3 className="mt-4 text-3xl font-semibold text-white">"Hallo, Auto macht Probleme."</h3>
+              <ul className="mt-6 space-y-4 text-zinc-300">
+                {['keine Fahrzeugdaten', 'keine Dringlichkeit', 'keine Fotos', 'mehrere Rückfragen nötig'].map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <span className="h-2 w-2 rounded-full bg-[#e11d2e]" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="h-full rounded border border-[#2dd4ff]/30 bg-[#2dd4ff]/10 p-7 shadow-2xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#2dd4ff]">
+                888CH-LAB System
+              </p>
+              <h3 className="mt-4 text-3xl font-semibold text-white">Strukturierte Diagnose-Anfrage</h3>
+              <ul className="mt-6 space-y-4 text-zinc-200">
+                {[
+                  'Marke, Modell, Jahrgang und Kilometer',
+                  'konkretes Symptom',
+                  'Dringlichkeit sichtbar',
+                  'WhatsApp-Text automatisch vorbereitet',
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-emerald-400" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
       <section id="diagnose" className="bg-[#0b0b0d] px-5 py-20 md:px-8 md:py-28">
         <SectionHeading
