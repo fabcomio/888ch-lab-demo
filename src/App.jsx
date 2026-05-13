@@ -17,6 +17,7 @@ import {
   Wrench,
   Zap,
 } from 'lucide-react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 
 const phoneNumber = '+41 76 606 38 38'
 const phoneHref = 'tel:+41766063838'
@@ -410,6 +411,7 @@ function App() {
           </Reveal>
         </div>
       </section>
+      <SpeedInsights />
     </main>
   )
 }
