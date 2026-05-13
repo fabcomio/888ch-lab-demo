@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
+  Activity,
   ArrowRight,
   BadgeCheck,
-  CalendarCheck,
   Car,
   CheckCircle2,
+  ClipboardCheck,
   Clock,
   Cpu,
   FileCheck2,
@@ -16,12 +17,14 @@ import {
   Phone,
   PlayCircle,
   SearchCheck,
+  Send,
   ShieldCheck,
   Snowflake,
   Sparkles,
   Star,
   Sun,
   Target,
+  Timer,
   Wrench,
   Zap,
 } from 'lucide-react'
@@ -177,6 +180,65 @@ const reviews = [
   },
 ]
 
+const diagnosticSignals = [
+  { label: 'Steuergerät-Kommunikation', value: 'stabil', tone: 'text-emerald-400' },
+  { label: 'Fehlerbild priorisiert', value: 'hoch', tone: 'text-[#2dd4ff]' },
+  { label: 'MFK-Relevanz', value: 'geprüft', tone: 'text-[#e11d2e]' },
+]
+
+const issueOptions = [
+  {
+    id: 'warning',
+    label: 'Warnlampe leuchtet',
+    title: 'Elektronikdiagnose mit sauberer Priorisierung',
+    text: 'Wir lesen relevante Systeme aus, prüfen Zusammenhänge und erklären, ob Weiterfahren sinnvoll ist oder eine Reparatur zeitnah geplant werden sollte.',
+    next: 'Foto der Warnlampe und Fahrzeugdaten per WhatsApp senden.',
+    icon: Activity,
+  },
+  {
+    id: 'mfk',
+    label: 'MFK steht bevor',
+    title: 'Kontrollrelevante Punkte vorab klären',
+    text: 'Licht, Bremsen, Fahrwerk, Reifen, Elektronik und sichtbare Mängel werden gezielt beurteilt, damit Sie nicht unvorbereitet zur Kontrolle fahren.',
+    next: 'MFK-Termin oder ungefähres Prüfdatum mitsenden.',
+    icon: ClipboardCheck,
+  },
+  {
+    id: 'comfort',
+    label: 'Klima oder Komfort',
+    title: 'Komfortsysteme prüfen, bevor es mühsam wird',
+    text: 'Wir prüfen Kühlleistung, Filterzustand, elektrische Funktionen und auffällige Geräusche oder Gerüche mit klarer Empfehlung.',
+    next: 'Symptom kurz beschreiben und wenn möglich ein Video anhängen.',
+    icon: Snowflake,
+  },
+  {
+    id: 'performance',
+    label: 'Leistung fehlt',
+    title: 'Performance-Probleme strukturiert eingrenzen',
+    text: 'Wir betrachten Fehlerspeicher, Fahrverhalten und relevante Sensorik, damit nicht auf Verdacht Teile ersetzt werden.',
+    next: 'Marke, Modell, Motorisierung und Auftreten des Problems senden.',
+    icon: Gauge,
+  },
+]
+
+const processSteps = [
+  {
+    title: 'Problem senden',
+    text: 'Per WhatsApp mit Foto, Video oder kurzer Beschreibung starten.',
+    icon: Send,
+  },
+  {
+    title: 'Diagnose planen',
+    text: 'Fahrzeug, Fehlerbild und Dringlichkeit werden eingeordnet.',
+    icon: SearchCheck,
+  },
+  {
+    title: 'Klar entscheiden',
+    text: 'Sie erhalten eine verständliche Einschätzung mit sauberer Empfehlung.',
+    icon: CheckCircle2,
+  },
+]
+
 const fadeUp = {
   hidden: { opacity: 0, y: 34 },
   visible: { opacity: 1, y: 0 },
@@ -222,6 +284,8 @@ function App() {
   })
 
   const isLight = theme === 'light'
+  const [selectedIssue, setSelectedIssue] = useState(issueOptions[0])
+  const SelectedIssueIcon = selectedIssue.icon
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
@@ -342,33 +406,186 @@ function App() {
             initial={{ opacity: 0, x: 42 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-            className="hidden md:block"
+            className="block"
           >
-            <div className="ml-auto max-w-md border border-white/12 bg-[#1a1a1a]/72 p-6 shadow-2xl backdrop-blur-xl">
-              <div className="flex items-center justify-between border-b border-white/10 pb-5">
-                <div>
-                  <p className="text-sm uppercase tracking-[0.22em] text-[#2dd4ff]">
-                    Diagnose-Zentrale
-                  </p>
-                  <p className="mt-2 text-2xl font-semibold text-white">Live Check-in</p>
+            <div className="premium-console ml-auto max-w-md overflow-hidden border border-white/12 bg-[#1a1a1a]/72 shadow-2xl backdrop-blur-xl">
+              <div className="border-b border-white/10 bg-white/[0.03] px-6 py-5">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm uppercase tracking-[0.22em] text-[#2dd4ff]">
+                      888CH Scan
+                    </p>
+                    <p className="mt-2 text-2xl font-semibold text-white">Live Diagnose-Konsole</p>
+                  </div>
+                  <div className="grid h-12 w-12 place-items-center rounded bg-[#e11d2e]/14 text-[#e11d2e]">
+                    <Activity className="h-7 w-7" />
+                  </div>
                 </div>
-                <CalendarCheck className="h-10 w-10 text-[#e11d2e]" />
               </div>
-              <div className="space-y-4 pt-5">
-                {['Fehleranalyse', 'Offerte', 'Reparaturfreigabe'].map((item, index) => (
-                  <div key={item} className="flex items-center gap-4">
-                    <span className="grid h-9 w-9 place-items-center rounded bg-white/8 text-sm font-semibold text-[#2dd4ff]">
-                      0{index + 1}
+              <div className="space-y-5 p-6">
+                <div className="rounded border border-[#2dd4ff]/20 bg-[#2dd4ff]/10 p-4">
+                  <div className="mb-3 flex items-center justify-between text-xs uppercase tracking-[0.18em] text-zinc-300">
+                    <span>Systemstatus</span>
+                    <span className="text-emerald-400">bereit</span>
+                  </div>
+                  <div className="h-2 overflow-hidden rounded-full bg-white/10">
+                    <motion.div
+                      className="h-full rounded-full bg-[#2dd4ff]"
+                      initial={{ width: '18%' }}
+                      animate={{ width: '87%' }}
+                      transition={{ duration: 1.2, ease: 'easeOut', delay: 0.4 }}
+                    />
+                  </div>
+                </div>
+                {diagnosticSignals.map((signal) => (
+                  <div key={signal.label} className="flex items-center gap-4">
+                    <span className="grid h-9 w-9 place-items-center rounded bg-white/8">
+                      <CheckCircle2 className="h-5 w-5 text-emerald-400" />
                     </span>
-                    <span className="text-zinc-200">{item}</span>
-                    <CheckCircle2 className="ml-auto h-5 w-5 text-emerald-400" />
+                    <span className="text-zinc-200">{signal.label}</span>
+                    <span className={`ml-auto text-sm font-semibold uppercase ${signal.tone}`}>
+                      {signal.value}
+                    </span>
                   </div>
                 ))}
+                <div className="grid grid-cols-3 gap-3 border-t border-white/10 pt-5 text-center">
+                  {[
+                    ['1998', 'Elektronik'],
+                    ['24h', 'Antwortziel'],
+                    ['Aarau', 'Region'],
+                  ].map(([value, label]) => (
+                    <div key={label} className="rounded bg-white/8 p-3">
+                      <p className="text-xl font-semibold text-white">{value}</p>
+                      <p className="mt-1 text-xs text-zinc-400">{label}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
+
+      <section className="bg-[#0b0b0d] px-5 py-16 md:px-8 md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch">
+          <Reveal className="rounded border border-white/10 bg-[#1a1a1a] p-7 md:p-9">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-[#2dd4ff]">
+              Sofort-Orientierung
+            </p>
+            <h2 className="text-3xl font-semibold tracking-normal text-white md:text-5xl">
+              Was macht Ihr Fahrzeug gerade?
+            </h2>
+            <p className="mt-5 text-lg leading-8 text-zinc-300">
+              Kunden müssen nicht wissen, welches Bauteil betroffen ist. Ein Symptom reicht,
+              um den nächsten sinnvollen Schritt einzuleiten.
+            </p>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              {issueOptions.map((issue) => {
+                const Icon = issue.icon
+                const isSelected = selectedIssue.id === issue.id
+                return (
+                  <button
+                    key={issue.id}
+                    type="button"
+                    onClick={() => setSelectedIssue(issue)}
+                    className={`issue-button flex items-center gap-3 rounded border px-4 py-4 text-left font-semibold transition ${
+                      isSelected
+                        ? 'border-[#2dd4ff] bg-[#2dd4ff]/12 text-white'
+                        : 'border-white/10 bg-white/[0.04] text-zinc-200 hover:bg-white/8'
+                    }`}
+                  >
+                    <Icon className="h-5 w-5 text-[#2dd4ff]" />
+                    {issue.label}
+                  </button>
+                )
+              })}
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1} className="rounded border border-white/10 bg-[#141416] p-7 md:p-9">
+            <div className="flex items-start gap-5">
+              <div className="grid h-14 w-14 shrink-0 place-items-center rounded bg-[#e11d2e]/14 text-[#e11d2e]">
+                <SelectedIssueIcon className="h-7 w-7" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#2dd4ff]">
+                  Empfehlung
+                </p>
+                <h3 className="mt-3 text-3xl font-semibold text-white">{selectedIssue.title}</h3>
+              </div>
+            </div>
+            <p className="mt-6 text-lg leading-8 text-zinc-300">{selectedIssue.text}</p>
+            <div className="mt-7 rounded border border-white/10 bg-white/[0.04] p-5">
+              <div className="flex gap-4">
+                <Timer className="mt-1 h-5 w-5 text-[#2dd4ff]" />
+                <div>
+                  <p className="font-semibold text-white">Nächster Schritt</p>
+                  <p className="mt-1 leading-7 text-zinc-300">{selectedIssue.next}</p>
+                </div>
+              </div>
+            </div>
+            <a
+              href={whatsappHref}
+              className="mt-7 inline-flex items-center justify-center gap-3 rounded bg-[#e11d2e] px-6 py-4 font-semibold text-white shadow-[0_18px_45px_rgba(225,29,46,0.28)] transition hover:bg-[#f43f5e]"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Diagnose starten
+              <MessageCircle className="h-5 w-5" />
+            </a>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-[#141416] px-5 py-16 md:px-8 md:py-24">
+        <div className="mx-auto max-w-7xl">
+          <Reveal className="mb-10 max-w-3xl">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-[#2dd4ff]">
+              3-Schritt-System
+            </p>
+            <h2 className="text-3xl font-semibold tracking-normal text-white md:text-5xl">
+              Vom Symptom zur klaren Entscheidung.
+            </h2>
+          </Reveal>
+          <div className="grid gap-5 md:grid-cols-3">
+            {processSteps.map((step, index) => {
+              const Icon = step.icon
+              return (
+                <Reveal key={step.title} delay={index * 0.08}>
+                  <div className="relative h-full rounded border border-white/10 bg-[#1a1a1a] p-7">
+                    <span className="absolute right-6 top-6 text-5xl font-semibold text-white/[0.06]">
+                      0{index + 1}
+                    </span>
+                    <div className="mb-6 grid h-14 w-14 place-items-center rounded bg-[#2dd4ff]/10 text-[#2dd4ff]">
+                      <Icon className="h-7 w-7" />
+                    </div>
+                    <h3 className="text-2xl font-semibold text-white">{step.title}</h3>
+                    <p className="mt-3 leading-7 text-zinc-300">{step.text}</p>
+                  </div>
+                </Reveal>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      <div className="sticky-cta fixed inset-x-4 bottom-4 z-40 mx-auto max-w-xl rounded border border-white/10 bg-[#1a1a1a]/92 p-3 shadow-2xl backdrop-blur-xl md:bottom-6">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="px-2">
+            <p className="font-semibold text-white">Warnlampe oder MFK-Termin?</p>
+            <p className="text-sm text-zinc-400">Foto senden, Einschätzung erhalten.</p>
+          </div>
+          <a
+            href={whatsappHref}
+            className="inline-flex items-center justify-center gap-2 rounded bg-[#e11d2e] px-5 py-3 text-sm font-semibold text-white"
+            target="_blank"
+            rel="noreferrer"
+          >
+            WhatsApp
+            <MessageCircle className="h-4 w-4" />
+          </a>
+        </div>
+      </div>
 
       <section id="diagnose" className="bg-[#0b0b0d] px-5 py-20 md:px-8 md:py-28">
         <SectionHeading

@@ -197,6 +197,47 @@ html[data-theme="light"] body {
   color: #6ee7b7 !important;
 }
 
+.theme-shell.light-mode .premium-console {
+  background-color: rgba(15, 23, 42, 0.78) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+.theme-shell.light-mode .premium-console h2,
+.theme-shell.light-mode .premium-console h3,
+.theme-shell.light-mode .premium-console p,
+.theme-shell.light-mode .premium-console span,
+.theme-shell.light-mode .premium-console .text-white,
+.theme-shell.light-mode .premium-console .text-zinc-200,
+.theme-shell.light-mode .premium-console .text-zinc-300,
+.theme-shell.light-mode .premium-console .text-zinc-400 {
+  color: #ffffff !important;
+}
+
+.theme-shell.light-mode .premium-console .text-emerald-400 {
+  color: #34d399 !important;
+}
+
+.theme-shell.light-mode .issue-button {
+  color: #0f172a !important;
+}
+
+.theme-shell.light-mode .issue-button.border-\[\#2dd4ff\] {
+  background-color: rgba(2, 132, 199, 0.14) !important;
+}
+
+.theme-shell.light-mode .sticky-cta {
+  background-color: rgba(255, 255, 255, 0.94) !important;
+  border-color: rgba(15, 23, 42, 0.14) !important;
+}
+
+.theme-shell.light-mode .sticky-cta p {
+  color: #0f172a !important;
+}
+
+.theme-shell.light-mode .sticky-cta .text-zinc-400 {
+  color: #475569 !important;
+}
+
 button,
 a {
   -webkit-tap-highlight-color: transparent;
