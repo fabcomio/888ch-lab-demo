@@ -165,6 +165,38 @@ html[data-theme="light"] body {
   background-color: rgba(190, 18, 60, 0.1) !important;
 }
 
+.theme-shell.light-mode section.bg-\[\#141416\] {
+  background-color: #e6ebf1 !important;
+}
+
+.theme-shell.light-mode section:not(#top) .bg-white\/8,
+.theme-shell.light-mode section:not(#top) .bg-white\/\[0\.04\] {
+  background-color: rgba(255, 255, 255, 0.88) !important;
+}
+
+.theme-shell.light-mode section:not(#top) a.bg-white\/8 {
+  color: #0f172a !important;
+}
+
+.theme-shell.light-mode .whatsapp-cta {
+  border-color: rgba(5, 150, 105, 0.34) !important;
+  background-color: rgba(5, 150, 105, 0.1) !important;
+  color: #064e3b !important;
+}
+
+.theme-shell.light-mode #top .whatsapp-cta {
+  color: #ffffff !important;
+}
+
+.theme-shell.light-mode .text-emerald-300,
+.theme-shell.light-mode .text-emerald-400 {
+  color: #059669 !important;
+}
+
+.theme-shell.light-mode #top .text-emerald-300 {
+  color: #6ee7b7 !important;
+}
+
 button,
 a {
   -webkit-tap-highlight-color: transparent;

@@ -7,13 +7,19 @@ import {
   Car,
   CheckCircle2,
   Clock,
+  Cpu,
+  FileCheck2,
   Gauge,
   MapPin,
+  MessageCircle,
   Moon,
   Phone,
+  PlayCircle,
+  SearchCheck,
   ShieldCheck,
   Snowflake,
   Sparkles,
+  Star,
   Sun,
   Target,
   Wrench,
@@ -22,6 +28,8 @@ import {
 
 const phoneNumber = '+41 76 606 38 38'
 const phoneHref = 'tel:+41766063838'
+const whatsappHref =
+  'https://wa.me/41766063838?text=Guten%20Tag%20888CH-LAB%2C%20ich%20moechte%20ein%20Fahrzeugproblem%20abklaeren%20lassen.'
 
 const serviceCards = [
   {
@@ -91,6 +99,81 @@ const trustItems = [
     title: 'Lokale Expertise',
     text: 'Direkt in Oberentfelden, nah bei Aarau und verankert in den Anforderungen Schweizer Fahrzeughalter.',
     icon: MapPin,
+  },
+]
+
+const specialistItems = [
+  {
+    title: 'Steuergeräte & Codierung',
+    text: 'Saubere Prüfung, Reparaturabklärung und Codierung für komplexe Elektronikthemen.',
+    icon: Cpu,
+  },
+  {
+    title: 'DSG, ABS & Airbag',
+    text: 'Systematische Fehleranalyse bei sicherheits- und fahrrelevanten Steuerungssystemen.',
+    icon: SearchCheck,
+  },
+  {
+    title: 'MFK-relevante Mängel',
+    text: 'Gezielte Vorbereitung mit Fokus auf Licht, Bremsen, Fahrwerk, Elektronik und Abgaswerte.',
+    icon: FileCheck2,
+  },
+]
+
+const workshopCases = [
+  {
+    title: 'Elektronikfehler sauber eingegrenzt',
+    problem: 'Warnlampen im Kombiinstrument und sporadische Kommunikationsfehler.',
+    result: 'Ursache dokumentiert, Reparaturweg erklärt und unnötigen Teiletausch vermieden.',
+    image:
+      'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1200&q=80',
+  },
+  {
+    title: 'MFK-Vorbereitung ohne Hektik',
+    problem: 'Unsichere Ausgangslage vor der amtlichen Kontrolle.',
+    result: 'Prüfpunkte priorisiert, Mängel transparent besprochen und Fahrzeug kontrollbereit gemacht.',
+    image:
+      'https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?auto=format&fit=crop&w=1200&q=80',
+  },
+  {
+    title: 'Klima- und Komfortsystem geprüft',
+    problem: 'Schwache Kühlleistung und unangenehme Gerüche im Innenraum.',
+    result: 'Klimasystem geprüft, Filterzustand beurteilt und klare Empfehlung abgegeben.',
+    image:
+      'https://images.unsplash.com/photo-1625047509248-ec889cbff17f?auto=format&fit=crop&w=1200&q=80',
+  },
+]
+
+const offerItems = [
+  {
+    title: 'Fehlerdiagnose',
+    price: 'ab CHF 89',
+    text: 'Auslesen, Plausibilitätsprüfung und verständliche Einschätzung der nächsten Schritte.',
+  },
+  {
+    title: 'MFK-Vorcheck',
+    price: 'ab CHF 129',
+    text: 'Sicht- und Funktionsprüfung der wichtigsten kontrollrelevanten Fahrzeugbereiche.',
+  },
+  {
+    title: 'Saison-Check',
+    price: 'ab CHF 79',
+    text: 'Licht, Flüssigkeiten, Reifen, Batterie und saisonrelevante Komfortsysteme.',
+  },
+]
+
+const reviews = [
+  {
+    name: 'M. Keller',
+    text: 'Sehr transparente Diagnose. Mir wurde verständlich erklärt, was dringend ist und was warten kann.',
+  },
+  {
+    name: 'A. Demir',
+    text: 'Schnelle Rückmeldung per WhatsApp und sauberer Service. Genau so wünscht man sich eine Garage.',
+  },
+  {
+    name: 'S. Meier',
+    text: 'Kompetent bei Elektronikproblemen. Kein Rätselraten, sondern klare Prüfung und faire Empfehlung.',
   },
 ]
 
@@ -165,6 +248,9 @@ function App() {
             <a className="transition hover:text-white" href="#diagnose">
               Services
             </a>
+            <a className="transition hover:text-white" href="#faelle">
+              Fälle
+            </a>
             <a className="transition hover:text-white" href="#specials">
               Specials
             </a>
@@ -183,6 +269,15 @@ function App() {
             >
               {isLight ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
             </button>
+            <a
+              href={whatsappHref}
+              className="whatsapp-cta hidden items-center gap-2 rounded border border-emerald-400/35 bg-emerald-400/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-emerald-400/18 lg:inline-flex"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <MessageCircle className="h-4 w-4 text-emerald-300" />
+              WhatsApp
+            </a>
             <a
               href={phoneHref}
               className="inline-flex items-center gap-2 rounded bg-[#e11d2e] px-4 py-3 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(225,29,46,0.28)] transition hover:bg-[#f43f5e] focus:outline-none focus:ring-2 focus:ring-[#2dd4ff]"
@@ -232,11 +327,13 @@ function App() {
                 <ArrowRight className="h-5 w-5" />
               </a>
               <a
-                href={phoneHref}
-                className="inline-flex items-center justify-center gap-3 rounded border border-white/15 bg-white/8 px-6 py-4 font-semibold text-white backdrop-blur transition hover:bg-white/14"
+                href={whatsappHref}
+                className="whatsapp-cta inline-flex items-center justify-center gap-3 rounded border border-emerald-400/35 bg-emerald-400/10 px-6 py-4 font-semibold text-white backdrop-blur transition hover:bg-emerald-400/18"
+                target="_blank"
+                rel="noreferrer"
               >
-                <Phone className="h-5 w-5 text-[#2dd4ff]" />
-                {phoneNumber}
+                <MessageCircle className="h-5 w-5 text-emerald-300" />
+                Problem per WhatsApp senden
               </a>
             </div>
           </motion.div>
@@ -315,6 +412,65 @@ function App() {
         </div>
       </section>
 
+      <section className="bg-[#141416] px-5 py-20 md:px-8 md:py-28">
+        <SectionHeading
+          eyebrow="Spezialisierung"
+          title="Stark bei den Fällen, bei denen Standard-Service nicht reicht."
+          text="888CH-LAB verbindet Werkstattpraxis mit Elektronik-Know-how. Besonders hilfreich ist das, wenn Warnlampen, Steuergeräte oder sporadische Fehler eine genaue Analyse verlangen."
+        />
+        <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-3">
+          {specialistItems.map((item, index) => {
+            const Icon = item.icon
+            return (
+              <Reveal key={item.title} delay={index * 0.08}>
+                <div className="h-full rounded border border-white/10 bg-white/[0.04] p-7">
+                  <div className="mb-6 grid h-14 w-14 place-items-center rounded bg-[#2dd4ff]/10 text-[#2dd4ff]">
+                    <Icon className="h-7 w-7" />
+                  </div>
+                  <h3 className="text-2xl font-semibold text-white">{item.title}</h3>
+                  <p className="mt-3 leading-7 text-zinc-300">{item.text}</p>
+                </div>
+              </Reveal>
+            )
+          })}
+        </div>
+      </section>
+
+      <section id="faelle" className="bg-[#0b0b0d] px-5 py-20 md:px-8 md:py-28">
+        <SectionHeading
+          eyebrow="Aus der Werkstatt"
+          title="Konkrete Fälle machen Kompetenz sichtbar."
+          text="Statt abstrakter Versprechen zeigt 888CH-LAB, wie typische Fahrzeugprobleme strukturiert geprüft und verständlich gelöst werden."
+        />
+        <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-3">
+          {workshopCases.map((item, index) => (
+            <Reveal key={item.title} delay={index * 0.08}>
+              <article className="group h-full overflow-hidden rounded border border-white/10 bg-[#1a1a1a] shadow-xl">
+                <div className="relative h-56 overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-transparent" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-2xl font-semibold text-white">{item.title}</h3>
+                  <p className="mt-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#2dd4ff]">
+                    Ausgangslage
+                  </p>
+                  <p className="mt-2 leading-7 text-zinc-300">{item.problem}</p>
+                  <p className="mt-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#2dd4ff]">
+                    Ergebnis
+                  </p>
+                  <p className="mt-2 leading-7 text-zinc-300">{item.result}</p>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       <section id="specials" className="overflow-hidden bg-[#141416] px-5 py-20 md:px-8 md:py-28">
         <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-center">
           <Reveal>
@@ -360,6 +516,101 @@ function App() {
       </section>
 
       <section className="bg-[#0b0b0d] px-5 py-20 md:px-8 md:py-28">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <Reveal>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-[#2dd4ff]">
+              Einblick & Social Proof
+            </p>
+            <h2 className="text-3xl font-semibold tracking-normal text-white md:text-5xl">
+              Diagnose sichtbar machen, Vertrauen schneller aufbauen.
+            </h2>
+            <p className="mt-5 text-lg leading-8 text-zinc-300">
+              Kurze Werkstatt-Clips eignen sich ideal, um echte Kompetenz zu zeigen:
+              Diagnosegerät im Einsatz, Steuergerät auf der Werkbank oder ein kurzer
+              Vorher/Nachher-Check. So versteht man sofort, wie 888CH-LAB arbeitet.
+            </p>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <a
+                href={whatsappHref}
+                className="inline-flex items-center justify-center gap-3 rounded bg-[#e11d2e] px-6 py-4 font-semibold text-white shadow-[0_18px_45px_rgba(225,29,46,0.28)] transition hover:bg-[#f43f5e]"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <MessageCircle className="h-5 w-5" />
+                Fahrzeugproblem senden
+              </a>
+              <a
+                href="#faelle"
+                className="inline-flex items-center justify-center gap-3 rounded border border-white/15 bg-white/8 px-6 py-4 font-semibold text-white transition hover:bg-white/14"
+              >
+                Fälle ansehen
+                <ArrowRight className="h-5 w-5" />
+              </a>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <div className="relative min-h-[430px] overflow-hidden rounded border border-white/10 bg-[#1a1a1a] shadow-2xl">
+              <img
+                src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?auto=format&fit=crop&w=1400&q=80"
+                alt="Diagnosearbeit in einer modernen Werkstatt"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,13,0.18)_0%,rgba(11,11,13,0.9)_100%)]" />
+              <div className="relative flex min-h-[430px] flex-col justify-end p-7">
+                <button
+                  type="button"
+                  className="mb-8 grid h-20 w-20 place-items-center rounded-full border border-white/25 bg-white/12 text-white backdrop-blur transition hover:scale-105"
+                  aria-label="Video Platzhalter abspielen"
+                >
+                  <PlayCircle className="h-10 w-10" />
+                </button>
+                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#2dd4ff]">
+                  Video-Platzhalter
+                </p>
+                <h3 className="mt-3 text-3xl font-semibold text-white">
+                  30 Sekunden Werkstatt-Einblick
+                </h3>
+                <p className="mt-3 leading-7 text-zinc-200">
+                  Ideal für Startseite, Instagram Reels, TikTok und Google Business.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-[#141416] px-5 py-20 md:px-8 md:py-28">
+        <SectionHeading
+          eyebrow="Klare Einstiegspunkte"
+          title="Anfragen werden einfacher, wenn der erste Schritt klar ist."
+          text="Die Preise dienen als Orientierung und schaffen Verbindlichkeit. Der genaue Umfang wird nach Fahrzeug, Fehlerbild und Aufwand bestätigt."
+        />
+        <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-3">
+          {offerItems.map((item, index) => (
+            <Reveal key={item.title} delay={index * 0.08}>
+              <div className="h-full rounded border border-white/10 bg-[#1a1a1a] p-7">
+                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#2dd4ff]">
+                  {item.title}
+                </p>
+                <p className="mt-4 text-4xl font-semibold text-white">{item.price}</p>
+                <p className="mt-4 leading-7 text-zinc-300">{item.text}</p>
+                <a
+                  href={whatsappHref}
+                  className="whatsapp-cta mt-7 inline-flex items-center gap-3 rounded border border-white/15 bg-white/8 px-5 py-3 font-semibold text-white transition hover:bg-white/14"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Anfrage starten
+                  <MessageCircle className="h-5 w-5 text-emerald-300" />
+                </a>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-[#0b0b0d] px-5 py-20 md:px-8 md:py-28">
         <SectionHeading
           eyebrow="Vertrauens-Check"
           title="Argumente, die vor dem ersten Anruf Vertrauen schaffen."
@@ -380,6 +631,29 @@ function App() {
               </Reveal>
             )
           })}
+        </div>
+      </section>
+
+      <section className="bg-[#141416] px-5 py-20 md:px-8 md:py-28">
+        <SectionHeading
+          eyebrow="Kundenstimmen"
+          title="Vertrauen entsteht durch nachvollziehbare Erfahrungen."
+          text="Kurze Bewertungen geben neuen Kunden ein Gefühl dafür, wie klar, schnell und sorgfältig die Zusammenarbeit abläuft."
+        />
+        <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-3">
+          {reviews.map((review, index) => (
+            <Reveal key={review.name} delay={index * 0.08}>
+              <figure className="h-full rounded border border-white/10 bg-white/[0.04] p-7">
+                <div className="mb-5 flex gap-1 text-[#e11d2e]" aria-label="5 von 5 Sterne">
+                  {Array.from({ length: 5 }).map((_, starIndex) => (
+                    <Star key={starIndex} className="h-5 w-5 fill-current" />
+                  ))}
+                </div>
+                <blockquote className="leading-8 text-zinc-200">"{review.text}"</blockquote>
+                <figcaption className="mt-6 font-semibold text-white">{review.name}</figcaption>
+              </figure>
+            </Reveal>
+          ))}
         </div>
       </section>
 
@@ -414,6 +688,15 @@ function App() {
                 </div>
               </div>
               <div className="flex gap-4">
+                <MessageCircle className="mt-1 h-5 w-5 text-emerald-400" />
+                <div>
+                  <p className="font-semibold text-white">WhatsApp-Erstkontakt</p>
+                  <p className="text-sm text-zinc-400">
+                    Fehlerbild, Foto vom Kombiinstrument oder Fahrzeugdaten direkt senden.
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-4">
                 <MapPin className="mt-1 h-5 w-5 text-[#e11d2e]" />
                 <div>
                   <p className="font-semibold text-white">Suhrerstrasse 24</p>
@@ -435,6 +718,15 @@ function App() {
             >
               <Phone className="h-5 w-5" />
               Jetzt direkt anrufen
+            </a>
+            <a
+              href={whatsappHref}
+              className="whatsapp-cta mt-3 inline-flex w-full items-center justify-center gap-3 rounded border border-emerald-400/35 bg-emerald-400/10 px-6 py-4 font-semibold text-white transition hover:bg-emerald-400/18 sm:ml-3 sm:mt-9 sm:w-auto"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <MessageCircle className="h-5 w-5 text-emerald-300" />
+              WhatsApp senden
             </a>
           </Reveal>
         </div>
