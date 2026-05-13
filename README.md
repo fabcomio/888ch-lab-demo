@@ -14,6 +14,9 @@ Professionelle React-Demo fuer eine Schweizer Garage mit modernem Dark-Mechanic-
 
 - Sticky Navigation mit Direkt-Anruf
 - Hero-Sektion fuer 888CH-LAB
+- Demo-Modus mit klar markierten Platzhaltern fuer echte Assets
+- Premium- und Exotenbereich fuer Ferrari, Lamborghini und Luxusklasse
+- Concierge-Kommunikation fuer diskrete Anfrage, Abholung und Status
 - Diagnose-Zentrale mit vier Service-Karten
 - Spezialisierungsbereich fuer Autoelektronik und Diagnose
 - Werkstattfaelle mit Ausgangslage und Ergebnis

@@ -48,6 +48,54 @@ const proofStats = [
   { value: 'MFK', label: 'kontrollbereit' },
 ]
 
+const demoPlaceholders = [
+  'Echte Werkstattfotos',
+  'Google Reviews',
+  'Instagram Reels',
+  'Preislogik',
+  'Teamfoto',
+  'Google Maps',
+]
+
+const premiumVehicles = [
+  {
+    title: 'Ferrari & Performance',
+    text: 'Diskrete Diagnose, Batterieerhaltung, Fehlerspeicher, Saison-Check und saubere Dokumentation fuer sensible Fahrzeuge.',
+    image:
+      'https://images.unsplash.com/photo-1592198084033-aade902d1aae?auto=format&fit=crop&w=1400&q=85',
+  },
+  {
+    title: 'Lamborghini & Exoten',
+    text: 'Auftritt, Kommunikation und Intake sind so aufgebaut, dass anspruchsvolle Besitzer sofort Vertrauen spueren.',
+    image:
+      'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1400&q=85',
+  },
+  {
+    title: 'Rolls-Royce & Luxusklasse',
+    text: 'Concierge-Kommunikation, Abholservice-Option und klare Status-Updates passen zur Erwartung einer Premium-Kundschaft.',
+    image:
+      'https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1400&q=85',
+  },
+]
+
+const conciergeItems = [
+  {
+    title: 'Diskrete Anfrage',
+    text: 'Kunden koennen Fahrzeugdaten, Wunschzeit und Anliegen senden, ohne lange telefonieren zu muessen.',
+    icon: MessageCircle,
+  },
+  {
+    title: 'Abholung nach Absprache',
+    text: 'Premiumkunden sehen sofort, dass Logistik und Komfort Teil des Angebots sein koennen.',
+    icon: Route,
+  },
+  {
+    title: 'Status wie bei High-End-Service',
+    text: 'Von Anfrage bis Abholung bleibt der Ablauf klar, ruhig und professionell.',
+    icon: Timer,
+  },
+]
+
 const intakeDefaults = {
   brand: 'BMW',
   model: '320d',
@@ -618,13 +666,22 @@ function App() {
               Autoelektronik, Diagnose und Performance im Aargau
             </div>
             <h1 className="text-5xl font-semibold leading-[1.02] tracking-normal text-white md:text-7xl">
-              Präzision auf Schweizer Niveau – 888CH-LAB
+              High-End Diagnose für Fahrzeuge, die keine zweite Chance verdienen.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-200 md:text-xl">
-              Ihre Experten für Diagnose, Service und Performance-Optimierung. Von
-              Steuergeräten über MFK-Vorbereitung bis zur saisonalen Wartung: klar,
-              schnell und professionell.
+              888CH-LAB verbindet Schweizer Präzision, Autoelektronik und Premium-Kommunikation:
+              vom Alltagsfahrzeug bis zur Luxus- und Performanceklasse.
             </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {['Ferrari-ready', 'Lamborghini-ready', 'Rolls-Royce-ready', 'Diskret & dokumentiert'].map((label) => (
+                <span
+                  key={label}
+                  className="rounded border border-white/15 bg-white/8 px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-zinc-200"
+                >
+                  {label}
+                </span>
+              ))}
+            </div>
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
               <a
                 href="#standort"
@@ -724,6 +781,85 @@ function App() {
               <p className="mt-1 text-sm text-zinc-400">{stat.label}</p>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      <section className="bg-[#0b0b0d] px-5 py-14 md:px-8 md:py-20">
+        <div className="mx-auto max-w-7xl rounded border border-[#2dd4ff]/20 bg-[#2dd4ff]/10 p-6 md:p-8">
+          <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
+            <Reveal>
+              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-[#2dd4ff]">
+                Demo-Modus
+              </p>
+              <h2 className="text-3xl font-semibold text-white md:text-4xl">
+                Alles ist vorbereitet. Echte Daten rein, Premium-Auftritt raus.
+              </h2>
+              <p className="mt-4 leading-7 text-zinc-300">
+                Diese Demo zeigt bewusst, wo echte Inhalte später eingesetzt werden. So sieht der Garagist
+                sofort, wie aus Platzhaltern ein verkaufsstarkes Betriebssystem wird.
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {demoPlaceholders.map((item) => (
+                  <div key={item} className="rounded border border-white/10 bg-[#1a1a1a] p-4">
+                    <div className="mb-3 flex items-center gap-3">
+                      <Sparkles className="h-5 w-5 text-[#2dd4ff]" />
+                      <p className="font-semibold text-white">{item}</p>
+                    </div>
+                    <p className="text-sm leading-6 text-zinc-400">Platzhalter bereit für echte 888CH-LAB Inhalte.</p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#141416] px-5 py-20 md:px-8 md:py-28">
+        <SectionHeading
+          eyebrow="Premium & Exoten"
+          title="Ein Auftritt, der auch Ferrari-, Lamborghini- und Rolls-Royce-Kunden ernst nimmt."
+          text="Luxus- und Performancefahrzeuge brauchen keine lautere Werbung, sondern mehr Vertrauen: diskrete Anfrage, sauberer Ablauf, klare Dokumentation und ein Servicegefuehl, das zum Fahrzeug passt."
+        />
+        <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-3">
+          {premiumVehicles.map((vehicle, index) => (
+            <Reveal key={vehicle.title} delay={index * 0.08}>
+              <article className="group h-full overflow-hidden rounded border border-white/10 bg-[#1a1a1a] shadow-2xl">
+                <div className="relative h-72 overflow-hidden">
+                  <img
+                    src={vehicle.image}
+                    alt={vehicle.title}
+                    className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,11,13,0.05)_0%,rgba(11,11,13,0.88)_100%)]" />
+                  <span className="absolute left-5 top-5 rounded border border-white/15 bg-[#0b0b0d]/80 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#2dd4ff] backdrop-blur">
+                    Bildplatzhalter
+                  </span>
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-2xl font-semibold text-white">{vehicle.title}</h3>
+                    <p className="mt-3 leading-7 text-zinc-200">{vehicle.text}</p>
+                  </div>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+        <div className="mx-auto mt-8 grid max-w-7xl gap-5 md:grid-cols-3">
+          {conciergeItems.map((item, index) => {
+            const Icon = item.icon
+            return (
+              <Reveal key={item.title} delay={index * 0.08}>
+                <div className="h-full rounded border border-[#2dd4ff]/20 bg-[#2dd4ff]/8 p-7">
+                  <div className="mb-6 grid h-14 w-14 place-items-center rounded bg-[#2dd4ff]/12 text-[#2dd4ff]">
+                    <Icon className="h-7 w-7" />
+                  </div>
+                  <h3 className="text-2xl font-semibold text-white">{item.title}</h3>
+                  <p className="mt-3 leading-7 text-zinc-300">{item.text}</p>
+                </div>
+              </Reveal>
+            )
+          })}
         </div>
       </section>
 
@@ -1256,6 +1392,9 @@ function App() {
                     className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-transparent" />
+                  <span className="absolute left-5 top-5 rounded border border-white/15 bg-[#0b0b0d]/80 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#2dd4ff] backdrop-blur">
+                    Fall-Platzhalter
+                  </span>
                 </div>
                 <div className="p-6">
                   <h3 className="text-2xl font-semibold text-white">{item.title}</h3>
@@ -1447,6 +1586,9 @@ function App() {
           {reviews.map((review, index) => (
             <Reveal key={review.name} delay={index * 0.08}>
               <figure className="h-full rounded border border-white/10 bg-white/[0.04] p-7">
+                <span className="mb-5 inline-flex rounded border border-[#2dd4ff]/25 bg-[#2dd4ff]/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#2dd4ff]">
+                  Review-Platzhalter
+                </span>
                 <div className="mb-5 flex gap-1 text-[#e11d2e]" aria-label="5 von 5 Sterne">
                   {Array.from({ length: 5 }).map((_, starIndex) => (
                     <Star key={starIndex} className="h-5 w-5 fill-current" />
