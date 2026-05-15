@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import { Analytics } from '@vercel/analytics/react'
 import {
   Activity,
   ArrowRight,
@@ -1708,6 +1709,7 @@ function App() {
           </Reveal>
         </div>
       </section>
+      <Analytics />
     </main>
   )
 }
